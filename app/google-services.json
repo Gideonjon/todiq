@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "813620637890",
+    "project_id": "teamtodiq",
+    "storage_bucket": "teamtodiq.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:813620637890:android:f116031751fca203878b5b",
+        "android_client_info": {
+          "package_name": "com.example.behrnintern"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBI5gtz7Rl19nnqx9EU0O4VhqEw_5NxfQ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
