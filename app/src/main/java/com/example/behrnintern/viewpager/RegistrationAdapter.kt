@@ -4,8 +4,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.behrnintern.autthScreens.Login
-import com.example.behrnintern.autthScreens.Register
+import com.example.behrnintern.authScreens.Login
+import com.example.behrnintern.authScreens.Register
 
 class RegistrationAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
     FragmentStateAdapter(fragmentManager, lifecycle) {

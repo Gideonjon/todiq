@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_registrationViewpager_to_forgetPassword"
             app:destination="@id/forgetPassword" />
+        <action
+            android:id="@+id/action_registrationViewpager_to_dashboard"
+            app:destination="@id/dashboard" />
     </fragment>
     <dialog
         android:id="@+id/forgetPassword"
@@ -41,10 +44,19 @@
         android:id="@+id/dashboard"
         android:name="com.example.behrnintern.dashboard"
         android:label="fragment_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_dashboard_to_taskManager"
+            app:destination="@id/taskManager" />
+    </fragment>
     <fragment
         android:id="@+id/blankFragment"
         android:name="com.example.behrnintern.BlankFragment"
         android:label="fragment_blank"
         tools:layout="@layout/fragment_blank" />
+    <fragment
+        android:id="@+id/taskManager"
+        android:name="com.example.behrnintern.TaskManager"
+        android:label="fragment_task_manager"
+        tools:layout="@layout/fragment_task_manager" />
 </navigation>
