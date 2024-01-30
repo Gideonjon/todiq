@@ -58,9 +58,9 @@
         android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
         android:layout_marginTop="22dp"
-        app:layout_constraintStart_toStartOf="@+id/icon_back"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="@id/icon_back"
         app:layout_constraintTop_toBottomOf="@+id/icon_back" />
 
     <ImageView
@@ -84,10 +84,12 @@
         app:layout_constraintTop_toTopOf="@+id/date" />
 
     <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/image_tick"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
         android:src="@drawable/baseline_check_24"
+        android:layout_marginEnd="12dp"
+        app:layout_constraintBottom_toBottomOf="@+id/icon_back"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="9dp" />
+        app:layout_constraintTop_toTopOf="@+id/icon_back" />
 </androidx.constraintlayout.widget.ConstraintLayout>
