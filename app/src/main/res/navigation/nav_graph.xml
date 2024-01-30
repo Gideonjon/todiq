@@ -47,7 +47,8 @@
         tools:layout="@layout/fragment_dashboard" >
         <action
             android:id="@+id/action_dashboard_to_taskManager"
-            app:destination="@id/taskManager" />
+            app:destination="@id/taskManager"
+            app:enterAnim="@android:anim/slide_in_left" />
     </fragment>
     <fragment
         android:id="@+id/blankFragment"
