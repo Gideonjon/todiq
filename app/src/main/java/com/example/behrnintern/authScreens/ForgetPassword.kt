@@ -1,4 +1,4 @@
-package com.example.behrnintern
+package com.example.behrnintern.authScreens
 
 import android.os.Bundle
 import android.util.Patterns
