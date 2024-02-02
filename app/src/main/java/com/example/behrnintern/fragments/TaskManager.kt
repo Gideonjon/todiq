@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.example.behrnintern.R
+import com.example.behrnintern.data.TodiqTask
 import com.example.behrnintern.databinding.FragmentTaskManagerBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -28,7 +29,11 @@ class TaskManager : Fragment() {
     ): View? {
 
         // Inflate the layout for this fragment
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("task")
         auth = FirebaseAuth.getInstance()
+
+        val uid = auth.currentUser?.uid
 
 
 
@@ -74,39 +79,32 @@ class TaskManager : Fragment() {
 
 
         binding.imageTick.setOnClickListener {
-            val title = binding.titleEt.text.toString()
-            val description = binding.descriptionEt.text.toString()
-            saveToFirebase(title, description)
+            val users = TodiqTask(
+                binding.titleEt.text.toString(), binding.descriptionEt.text.toString()
+
+            )
+            if (uid != null) {
+                databaseReference.push().setValue(users).addOnCompleteListener {
+                    if (it.isSuccessful) {
+                        binding.titleEt.setText("")
+                        binding.descriptionEt.setText("")
+                        Toast.makeText(requireContext(), "Task Created", Toast.LENGTH_SHORT).show()
+                    }
+                }.addOnFailureListener {
+
+
+                    Toast.makeText(requireContext(), "Task Not Created", Toast.LENGTH_SHORT).show()
+                }
+            }
+
         }
 
 
 
-        return view
-    }
-
-    private fun saveToFirebase(title: String, description: String) {
-        val uid = auth.currentUser?.uid.toString()
-        databaseReference = FirebaseDatabase.getInstance().getReference("task").child(uid)
-        val hashMap: HashMap<String, String> = HashMap()
-        hashMap.put("userId", uid)
-        hashMap.put("title", title)
-        hashMap.put("description", description)
-
-        databaseReference.setValue(hashMap)
-
-            .addOnCompleteListener {
-
-                if (it.isSuccessful) {
-                    binding.titleEt.setText("")
-                    binding.descriptionEt.setText("")
-                } else {
-                    Toast.makeText(requireContext(), "Cant Save", Toast.LENGTH_SHORT).show()
-                }
-
-            }
 
 
-    }
+    return view
+}
 
 
 }

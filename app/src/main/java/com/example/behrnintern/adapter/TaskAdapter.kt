@@ -6,9 +6,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.behrnintern.R
-import com.example.behrnintern.data.User
+import com.example.behrnintern.data.TodiqTask
 
-class TaskAdapter(private val taskList: ArrayList<User>) :
+class TaskAdapter(private val taskList: MutableList<TodiqTask>) :
     RecyclerView.Adapter<TaskAdapter.MyViewHolder>() {
 
 

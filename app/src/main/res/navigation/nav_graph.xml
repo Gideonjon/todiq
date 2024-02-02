@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_splashScreen_to_fragmentViewPager"
             app:destination="@id/fragmentViewPager" />
+        <action
+            android:id="@+id/action_splashScreen_to_dashboard"
+            app:destination="@id/dashboard" />
     </fragment>
     <fragment
         android:id="@+id/fragmentViewPager"
