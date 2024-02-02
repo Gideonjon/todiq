@@ -30,6 +30,8 @@ class Login : Fragment() {
 
         auth = FirebaseAuth.getInstance()
 
+        binding.progressBar.visibility = View.INVISIBLE
+
         binding.login.setOnClickListener {
 
             if (!Patterns.EMAIL_ADDRESS.matcher(binding.emailEt.text.toString()).matches()) {
@@ -55,6 +57,10 @@ class Login : Fragment() {
 
 
                             binding.progressBar.visibility = View.VISIBLE
+
+                            Navigation.findNavController(view).navigate(R.id.action_registrationViewpager_to_dashboard)
+
+
                         } else {
                             Toast.makeText(
                                 requireContext(), "Account Not Created" +

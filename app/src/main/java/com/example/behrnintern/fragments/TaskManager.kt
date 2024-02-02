@@ -6,7 +6,10 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
+import com.example.behrnintern.R
 import com.example.behrnintern.databinding.FragmentTaskManagerBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -25,14 +28,17 @@ class TaskManager : Fragment() {
     ): View? {
 
         // Inflate the layout for this fragment
-
         auth = FirebaseAuth.getInstance()
-        val uid = auth.currentUser?.uid.toString()
+
 
 
         _binding = FragmentTaskManagerBinding.inflate(inflater, container, false)
         val view = binding.root
 
+
+        binding.iconBack.setOnClickListener {
+            Navigation.findNavController(view).navigate(R.id.action_taskManager_to_dashboard)
+        }
 
         binding.imageTick.visibility = View.INVISIBLE
 
@@ -79,10 +85,25 @@ class TaskManager : Fragment() {
     }
 
     private fun saveToFirebase(title: String, description: String) {
-        val userId = System.currentTimeMillis().toString()
-        databaseReference = FirebaseDatabase.getInstance().getReference("task").child(userId)
-        val userMap = mapOf("title" to title, "description" to description)
-        databaseReference.setValue(userMap)
+        val uid = auth.currentUser?.uid.toString()
+        databaseReference = FirebaseDatabase.getInstance().getReference("task").child(uid)
+        val hashMap: HashMap<String, String> = HashMap()
+        hashMap.put("userId", uid)
+        hashMap.put("title", title)
+        hashMap.put("description", description)
+
+        databaseReference.setValue(hashMap)
+
+            .addOnCompleteListener {
+
+                if (it.isSuccessful) {
+                    binding.titleEt.setText("")
+                    binding.descriptionEt.setText("")
+                } else {
+                    Toast.makeText(requireContext(), "Cant Save", Toast.LENGTH_SHORT).show()
+                }
+
+            }
 
 
     }

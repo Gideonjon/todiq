@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_registrationViewpager_to_dashboard"
             app:destination="@id/dashboard" />
+        <action
+            android:id="@+id/action_registrationViewpager_to_testing"
+            app:destination="@id/testing" />
     </fragment>
     <dialog
         android:id="@+id/forgetPassword"
@@ -64,4 +67,9 @@
             android:id="@+id/action_taskManager_to_dashboard"
             app:destination="@id/dashboard" />
     </fragment>
+    <fragment
+        android:id="@+id/testing"
+        android:name="com.example.behrnintern.testing"
+        android:label="fragment_testing"
+        tools:layout="@layout/fragment_testing" />
 </navigation>

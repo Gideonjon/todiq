@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
+import com.example.behrnintern.R
 import com.example.behrnintern.databinding.FragmentRegisterBinding
 import com.google.firebase.auth.FirebaseAuth
 
@@ -53,6 +55,9 @@ class Register : Fragment() {
 
 
                             binding.progressBar.visibility = View.VISIBLE
+                            Navigation.findNavController(view).navigate(R.id.action_registrationViewpager_to_dashboard)
+
+
                         } else {
                             Toast.makeText(
                                 requireContext(), "Account Not Created" +

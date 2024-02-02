@@ -7,6 +7,7 @@
     tools:context=".fragments.dashboard">
 
 
+<!--
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animation_view"
         android:layout_width="25dp"
@@ -19,6 +20,7 @@
         app:lottie_fileName="hello_world.json"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/waving" />
+-->
 
     <TextView
         android:id="@+id/greetings"
@@ -74,7 +76,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="12dp"
-                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -86,6 +87,7 @@
                 android:layout_height="100dp"
                 android:src="@drawable/nothing"
                 app:layout_constraintBottom_toBottomOf="parent"
+                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -96,6 +98,7 @@
                 android:layout_height="wrap_content"
                 android:text="No Task Added"
                 android:layout_marginTop="12dp"
+                android:visibility="invisible"
                 android:textSize="22sp"
                 app:layout_constraintEnd_toEndOf="@+id/imageView5"
                 app:layout_constraintStart_toStartOf="@+id/imageView5"
@@ -104,6 +107,7 @@
     </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+      android:id="@+id/add_task"
         style="@style/Widget.MaterialComponents.FloatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

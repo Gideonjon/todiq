@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.behrnintern.R
 import com.example.behrnintern.adapter.TaskAdapter
 import com.example.behrnintern.data.User
 import com.example.behrnintern.databinding.FragmentDashboardBinding
@@ -35,6 +37,16 @@ class dashboard : Fragment() {
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        binding.addTask.setOnClickListener {
+            Navigation.findNavController(view).navigate(R.id.action_dashboard_to_taskManager)
+        }
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("task")
+
+
+        binding.textView7.visibility = View.INVISIBLE
+        binding.imageView5.visibility = View.INVISIBLE
+
         databaseReference = FirebaseDatabase.getInstance().reference.child("task")
         auth = FirebaseAuth.getInstance()
 
@@ -48,18 +60,20 @@ class dashboard : Fragment() {
     }
 
     private fun getTask() {
+        binding.recyclerView.visibility = View.INVISIBLE
+        binding.imageView5.visibility = View.VISIBLE
+        binding.textView7.visibility = View.VISIBLE
 
         binding.recyclerView.setHasFixedSize(true)
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
 
+
         databaseReference.addValueEventListener(object : ValueEventListener {
+
             override fun onDataChange(snapshot: DataSnapshot) {
 
                 if (snapshot.exists()) {
-                    binding.textView7.visibility = View.INVISIBLE
-                    binding.imageView5.visibility = View.INVISIBLE
-                    binding.recyclerView.visibility = View.INVISIBLE
 
 
                     for (userSnapshot in snapshot.children) {
@@ -68,9 +82,9 @@ class dashboard : Fragment() {
                         taskArrayList.add(user!!)
 
                     }
-                    binding.textView7.visibility = View.INVISIBLE
+                   binding.recyclerView.visibility = View.VISIBLE
                     binding.imageView5.visibility = View.INVISIBLE
-                    binding.recyclerView.visibility = View.VISIBLE
+                    binding.textView7.visibility = View.INVISIBLE
                     binding.recyclerView.adapter = TaskAdapter(taskArrayList)
 
                 }
@@ -79,6 +93,9 @@ class dashboard : Fragment() {
             }
 
             override fun onCancelled(error: DatabaseError) {
+               binding.recyclerView.visibility = View.INVISIBLE
+                binding.imageView5.visibility = View.VISIBLE
+                binding.textView7.visibility = View.VISIBLE
 
 
             }
