@@ -72,7 +72,7 @@
     </fragment>
     <fragment
         android:id="@+id/testing"
-        android:name="com.example.behrnintern.testing"
+        android:name="com.example.behrnintern.fragments.testing"
         android:label="fragment_testing"
         tools:layout="@layout/fragment_testing" />
 </navigation>
