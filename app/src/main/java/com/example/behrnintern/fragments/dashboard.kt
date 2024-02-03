@@ -27,10 +27,8 @@ class dashboard : Fragment() {
     private var _binding: FragmentDashboardBinding? = null
     private val binding get() = _binding!!
     private lateinit var auth: FirebaseAuth
-    private lateinit var taskAdapter: TaskAdapter
-    private lateinit var toDoItemList: MutableList<TodiqTask>
-    private lateinit var authId: String
-    private lateinit var databaseReference: DatabaseReference
+   private lateinit var taskArrayList: ArrayLis
+   private lateinit var databaseReference: DatabaseReference
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,8 +54,8 @@ class dashboard : Fragment() {
 
         auth = FirebaseAuth.getInstance()
 
-        getTask()
-        init()
+
+
 
 
 
@@ -65,64 +63,6 @@ class dashboard : Fragment() {
 
     }
 
-    private fun init() {
-        authId = auth.currentUser!!.uid
-        databaseReference = Firebase.database.reference.child("Tasks")
-        binding.recyclerView.setHasFixedSize(true)
-        binding.recyclerView.layoutManager = LinearLayoutManager(context)
-
-        toDoItemList = mutableListOf()
-        taskAdapter = TaskAdapter(toDoItemList)
-        /*taskAdapter.setListener(this)*/
-        binding.recyclerView.adapter = taskAdapter
-
-
-    }
-
-    private fun getTask() {
-        binding.recyclerView.visibility = View.INVISIBLE
-        binding.imageView5.visibility = View.VISIBLE
-        binding.textView7.visibility = View.VISIBLE
-
-        binding.recyclerView.setHasFixedSize(true)
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-
-
-
-        databaseReference.addValueEventListener(object : ValueEventListener {
-
-            override fun onDataChange(snapshot: DataSnapshot) {
-
-                toDoItemList.clear()
-                for (taskSnapshot in snapshot.children) {
-                    val todoTask =
-                        taskSnapshot.key?.let { TodiqTask(it, taskSnapshot.value.toString()) }
-
-                    if (todoTask != null) {
-                        binding.recyclerView.visibility = View.VISIBLE
-                        binding.imageView5.visibility = View.INVISIBLE
-                        binding.textView7.visibility = View.INVISIBLE
-
-                        toDoItemList.add(todoTask)
-                    }
-
-                }
-                Log.d(TAG, "onDataChange: " + toDoItemList)
-                taskAdapter.notifyDataSetChanged()
-
-            }
-
-            override fun onCancelled(error: DatabaseError) {
-
-
-            }
-
-
-        }
-
-
-        )
-    }
 
 
 }

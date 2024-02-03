@@ -30,7 +30,7 @@ class TaskManager : Fragment() {
 
         // Inflate the layout for this fragment
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("task")
+        databaseReference = FirebaseDatabase.getInstance().reference.child("task")
         auth = FirebaseAuth.getInstance()
 
         val uid = auth.currentUser?.uid
@@ -84,10 +84,8 @@ class TaskManager : Fragment() {
 
             )
             if (uid != null) {
-                databaseReference.push().setValue(users).addOnCompleteListener {
+                databaseReference.child(uid).setValue(users).addOnCompleteListener {
                     if (it.isSuccessful) {
-                        binding.titleEt.setText("")
-                        binding.descriptionEt.setText("")
                         Toast.makeText(requireContext(), "Task Created", Toast.LENGTH_SHORT).show()
                     }
                 }.addOnFailureListener {
@@ -103,8 +101,8 @@ class TaskManager : Fragment() {
 
 
 
-    return view
-}
+        return view
+    }
 
 
 }
