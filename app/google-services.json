@@ -1,13 +1,14 @@
 {
   "project_info": {
     "project_number": "813620637890",
+    "firebase_url": "https://teamtodiq-default-rtdb.firebaseio.com",
     "project_id": "teamtodiq",
     "storage_bucket": "teamtodiq.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:813620637890:android:f116031751fca203878b5b",
+        "mobilesdk_app_id": "1:813620637890:android:5a4a60a51f8e2b15878b5b",
         "android_client_info": {
           "package_name": "com.example.behrnintern"
         }

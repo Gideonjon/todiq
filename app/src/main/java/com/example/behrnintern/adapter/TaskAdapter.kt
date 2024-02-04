@@ -1,52 +1,44 @@
-package com.example.kotlintodopractice.utils.adapter
+package com.example.freedidapp.utis
 
-import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.behrnintern.fragments.dashboard
-import com.example.kotlintodopractice.databinding.EachTodoItemBinding
+import com.example.behrnintern.R
 import com.example.kotlintodopractice.utils.model.ToDoData
 
-class TaskAdapter(private val list: MutableList<ToDoData>) : RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
+class TaskAdapter(private val userList: ArrayList<ToDoData>) :
+    RecyclerView.Adapter<TaskAdapter.MyViewHolder>() {
 
-    private  val TAG = "TaskAdapter"
-    private var listener:TaskAdapterInterface? = null
-    fun setListener(listener: dashboard){
-        this.listener = listener
-    }
-    class TaskViewHolder(val binding: EachTodoItemBinding) : RecyclerView.ViewHolder(binding.root)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TaskViewHolder {
-        val binding =
-            EachTodoItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return TaskViewHolder(binding)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.task, parent, false)
+
+        return MyViewHolder(itemView)
     }
 
-    override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
-        with(holder) {
-            with(list[position]) {
-                binding.tas.text = this.task
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
-                Log.d(TAG, "onBindViewHolder: "+this)
-                binding.editTask.setOnClickListener {
-                    listener?.onEditItemClicked(this , position)
-                }
+        val currentItem = userList[position]
 
-                binding.deleteTask.setOnClickListener {
-                    listener?.onDeleteItemClicked(this , position)
-                }
-            }
-        }
+        holder.title.text = currentItem.title
+        holder.description.text = currentItem.description
+
+
     }
 
     override fun getItemCount(): Int {
-        return list.size
+
+        return userList.size
     }
 
-    interface TaskAdapterInterface{
-        fun onDeleteItemClicked(toDoData: ToDoData , position : Int)
-        fun onEditItemClicked(toDoData: ToDoData , position: Int)
+    class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+        val title: TextView = itemView.findViewById(R.id.task_title)
+        val description: TextView = itemView.findViewById(R.id.task_text)
+
     }
 
 }

@@ -1,3 +1,7 @@
 package com.example.kotlintodopractice.utils.model
 
-data class ToDoData(var taskId: String, var title: String, var description: String)
+data class ToDoData(
+    var title: String? = null,
+    var description: String? = null,
+)
+
