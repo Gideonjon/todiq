@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.behrnintern.adapter.TodoAdapter
 import com.example.behrnintern.databinding.FragmentDashboardBinding
-import com.example.freedidapp.utis.TaskAdapter
 import com.example.kotlintodopractice.utils.model.ToDoData
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
@@ -25,7 +25,7 @@ class dashboard : Fragment(), OnDialogNextBtnClickListener {
     private lateinit var auth: FirebaseAuth
     private lateinit var databaseReference: DatabaseReference
     private lateinit var popUpFragment: TaskManager
-    private lateinit var userArrayList: ArrayList<ToDoData>
+    private lateinit var userArrayList: MutableList<ToDoData>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -70,7 +70,7 @@ class dashboard : Fragment(), OnDialogNextBtnClickListener {
                         userArrayList.add(user!!)
 
                     }
-                    binding.recyclerView.adapter = TaskAdapter(userArrayList)
+                    binding.recyclerView.adapter = TodoAdapter(userArrayList)
 
                 }
 

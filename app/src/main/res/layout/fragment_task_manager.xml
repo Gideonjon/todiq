@@ -55,7 +55,6 @@
                         android:layout_height="50dp"
                         android:background="@color/white"
                         android:hint="Enter Your Title"
-                        android:inputType="textEmailAddress"
                         android:paddingStart="12dp"
                         android:paddingTop="15dp" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -79,7 +78,6 @@
                         android:layout_height="50dp"
                         android:background="@color/white"
                         android:hint="Enter Your Task"
-                        android:inputType="textEmailAddress"
                         android:paddingStart="12dp"
                         android:paddingTop="15dp" />
                 </com.google.android.material.textfield.TextInputLayout>
